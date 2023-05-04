@@ -100,6 +100,7 @@ class _CreateUsersState extends State<CreateUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -184,7 +185,7 @@ class _CreateUsersState extends State<CreateUsers> {
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
-                    labelText: 'Email: ',
+                    labelText: 'E-mail: ',
                     labelStyle: TextStyle(
                       color: Color.fromARGB(255, 18, 230, 245),
                       //fontSize: 25.0,

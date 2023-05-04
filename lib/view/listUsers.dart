@@ -4,14 +4,14 @@ import 'package:sqflite/sqflite.dart';
 
 import '../model/user.dart';
 
-class listUsers extends StatefulWidget {
-  const listUsers({super.key});
+class ListUsers extends StatefulWidget {
+  const ListUsers({super.key});
 
   @override
-  State<listUsers> createState() => _listUsersState();
+  State<ListUsers> createState() => _ListUsersState();
 }
 
-class _listUsersState extends State<listUsers> {
+class _ListUsersState extends State<ListUsers> {
   List<User> list = [];
 
   //Future<List<User>>
@@ -27,8 +27,9 @@ class _listUsersState extends State<listUsers> {
         },
         version: 1,
       );
-      print('DATABASE OPENNG');
-      print(database);
+      //print('DATABASE OPENNG');
+      //print(database);
+
       return database;
     }
 
@@ -79,28 +80,36 @@ class _listUsersState extends State<listUsers> {
           // you can take it from **snapshot.data**
           return Scaffold(
             appBar: AppBar(
-              title: Text('List of users'),
+              title: const Text('List of Users'),
               actions: [
                 IconButton(
-                    onPressed: () {
-                      users();
-                    },
-                    icon: const Icon(Icons.refresh))
+                  onPressed: () {
+                    users();
+                  },
+                  icon: const Icon(Icons.refresh))
               ],
             ),
-            body: Column(children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text('${list[index].password}'),
-                      leading: Text(list[index].name),
-                    );
-                  },
+            body: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(10.0),
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 50,
+                        margin: const EdgeInsets.all(8.0),
+                        color: const Color.fromARGB(255, 18, 230, 245).withOpacity(0.5), 
+                        child: ListTile(
+                          tileColor: Colors.white,
+                          title: Text('${list[index].password}'.toUpperCase()),
+                          leading: Text(list[index].name.toUpperCase()),  
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ]),
+              ]),
           );
         } else {
           // Show loading during the async function finish to process

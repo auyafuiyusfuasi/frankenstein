@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/createusers',
       routes: {
         '/createusers': (context) => const CreateUsers(),
-        '/listusers': (context) => const listUsers(),
+        '/listusers': (context) => const ListUsers(),
       },
     );
   }
