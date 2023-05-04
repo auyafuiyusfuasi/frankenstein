@@ -38,7 +38,8 @@ class _ListUsersState extends State<ListUsers> {
     list = List.generate(maps.length, (i) {
       return User(
         id: maps[i]['id'],
-        name: maps[i]['name'],
+        username: maps[i]['name'],
+       // email: maps[i]['email'],
         password: maps[i]['age'],
       );
     });
@@ -103,7 +104,7 @@ class _ListUsersState extends State<ListUsers> {
                         child: ListTile(
                           tileColor: Colors.white,
                           title: Text('${list[index].password}'.toUpperCase()),
-                          leading: Text(list[index].name.toUpperCase()),  
+                          leading: Text(list[index].username.toUpperCase()),  
                         ),
                       );
                     },

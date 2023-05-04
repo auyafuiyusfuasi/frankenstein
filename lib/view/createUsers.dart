@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+//import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,8 +15,10 @@ class CreateUsers extends StatefulWidget {
 
 class _CreateUsersState extends State<CreateUsers> {
   int uid = 0;
-  final TextEditingController name = TextEditingController();
+  final TextEditingController username = TextEditingController();
   final TextEditingController age = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController description = TextEditingController();
 
   List<User> list = [];
 
@@ -60,10 +62,12 @@ class _CreateUsersState extends State<CreateUsers> {
     list = List.generate(maps.length, (i) {
       return User(
         id: maps[i]['id'],
-        name: maps[i]['name'],
+        username: maps[i]['username'],
+        //email: maps[i]['email'],
         password: maps[i]['age'],
       );
     });
+
     return list;
   }
 
@@ -80,10 +84,11 @@ class _CreateUsersState extends State<CreateUsers> {
   //   await insertUser(ruan);
   // }
 
-  insertUserController(String name, int age) async {
+  insertUserController(String username, int age) async {
     var user = User(
       id: uid++,
-      name: name,
+      username: username,
+      //email: email, 
       password: age,
     );
     await insertUser(user);
@@ -91,7 +96,8 @@ class _CreateUsersState extends State<CreateUsers> {
   }
 
   textController() {
-    String tempName = name.text;
+    String tempName = username.text;
+    //String tempEmail = email.text;
     int tempAge = int.tryParse(age.text) ?? 1;
 
     insertUserController(tempName, tempAge);
@@ -99,7 +105,7 @@ class _CreateUsersState extends State<CreateUsers> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(   
       resizeToAvoidBottomInset: false,
         body: Center(
           child: Column(
@@ -118,8 +124,8 @@ class _CreateUsersState extends State<CreateUsers> {
               ),
 
               const SizedBox(
-                width: 100, 
-                height: 100,
+                width: 15, 
+                height: 15,
               ),
 
 
@@ -140,7 +146,7 @@ class _CreateUsersState extends State<CreateUsers> {
                   style: const TextStyle(
                     color: Colors.white
                   ),
-                  controller: name,
+                  controller: username,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
@@ -181,7 +187,7 @@ class _CreateUsersState extends State<CreateUsers> {
                   style: const TextStyle(
                     color: Colors.white
                   ),
-                  controller: age,
+                  controller: email,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
@@ -207,7 +213,7 @@ class _CreateUsersState extends State<CreateUsers> {
                   style: const TextStyle(
                     color: Colors.white
                   ),
-                  controller: age,
+                  controller: description,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
@@ -251,32 +257,34 @@ class _CreateUsersState extends State<CreateUsers> {
                     ),
                   ),
                 ),
-              ),              
+              ),   
 
-              // const Text(
-              //   'You have pushed the button this many times:',
-              // ),
-
-              TextButton(
-                onPressed: () => {textController(), setState(() {})},
-                child: const Icon(Icons.keyboard_double_arrow_right_rounded)
-              ),
-             
-              Expanded(
-                child: ListView.builder(
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(list[index].name),
-                      leading: Text('${list[index].password}'),
-                    );
-                  },
+              SizedBox(
+                child: ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Color.fromARGB(255, 113, 0, 189)),
+                    padding: MaterialStatePropertyAll(
+                      EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 15,
+                      ),
+                    ),
+                  ),
+                  //onPressed: _calculate,
+                  onPressed: () => {textController(), setState(() {})},
+                  child: const Text(
+                    'Register',
+                    style: TextStyle(
+                      color: Colors.white,
+                      //fontSize: 25.0,
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
         ),
-
 
         floatingActionButton: FloatingActionButton(
           //onPressed: () => {textController(), setState(() {})},
@@ -284,8 +292,8 @@ class _CreateUsersState extends State<CreateUsers> {
             Navigator.pushNamed(context, '/listusers');
           },
           tooltip: 'Increment',
-          child: const Icon(Icons.list),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+          child: const Icon(Icons.play_arrow),
+        ), 
       );
   }
 }
