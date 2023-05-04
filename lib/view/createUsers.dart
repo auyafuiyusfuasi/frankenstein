@@ -112,7 +112,7 @@ class _CreateUsersState extends State<CreateUsers> {
 
               Image.network(
                 'https://cdn-icons-png.flaticon.com/512/3902/3902021.png',
-                height: 100,
+                height: 75,
                 alignment: Alignment.center
               ),
 
@@ -140,10 +140,10 @@ class _CreateUsersState extends State<CreateUsers> {
                     color: Colors.white
                   ),
                   controller: name,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
-                    labelText: 'Name: ',
+                    labelText: 'Username: ',
                     labelStyle: TextStyle(
                       color: Color.fromARGB(255, 18, 230, 245),
                       //rgba(6,185,254,255)
@@ -181,10 +181,63 @@ class _CreateUsersState extends State<CreateUsers> {
                     color: Colors.white
                   ),
                   controller: age,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                     //label: Text('teste: '),
-                    labelText: 'Age: ',
+                    labelText: 'Email: ',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(255, 18, 230, 245),
+                      //fontSize: 25.0,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Color.fromARGB(255, 18, 230, 245),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: 300.0,
+                margin: const EdgeInsets.all(10.0),
+                child: TextField(
+                  style: const TextStyle(
+                    color: Colors.white
+                  ),
+                  controller: age,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    //label: Text('teste: '),
+                    labelText: 'Description: ',
+                    labelStyle: TextStyle(
+                      color: Color.fromARGB(255, 18, 230, 245),
+                      //fontSize: 25.0,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Color.fromARGB(255, 18, 230, 245),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              Container(
+                width: 300.0,
+                margin: const EdgeInsets.all(10.0),
+                child: TextField(
+                  obscureText: true,
+                  style: const TextStyle(
+                    color: Colors.white
+                  ),
+                  controller: age,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    //label: Text('teste: '),
+                    labelText: 'Password: ',
                     labelStyle: TextStyle(
                       color: Color.fromARGB(255, 18, 230, 245),
                       //fontSize: 25.0,
